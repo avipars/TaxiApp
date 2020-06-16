@@ -1,111 +1,114 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+    <meta name="description" content="TaxiApp - Calculate Fees before you ride ">
+    <meta name="author" content="Avi Parshan">
+    <title>TaxiApp - Calculate Fees before you ride</title>
+    <meta name="og:title" property="og:title" content="TaxiApp - Calculate Fees before you ride">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="js/validate.js"></script>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
+        </script>
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="vendor/clock-picker/dist/bootstrap-clockpicker.min.css">
 
     <link rel="stylesheet" href="css/styles.css" rel="stylesheet">
-    <script src =js/main.js></script>
+    <script src=js/main.js></script>
 </head>
 
 <body id="page-top" onload="setValue()">
 
     <div class="container">
         <div class="row">
-          <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <div class="card card-signin my-5">
-              <div class="card-body">
-                <h5 class="card-title text-center">Welcome to TaxiApp</h5>
-                <form class="form-signin" id="taxiForm">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Welcome to TaxiApp</h5>
+                        <form class="form-signin" name="taxiForm" id="taxiForm" action="">
 
-                    <div class="form-label-group">
-                        <input type="text" id="inputStart" class="form-control" placeholder="Starting Point" required>
-                        <label for="inputStart">Starting Point</label>
-                      </div>
-                      <div class="form-label-group">
-                        <input type="text" id="inputDest" class="form-control" placeholder="Destination" required>
-                        <label for="inputDest">Destination</label>
-                      </div>
+                            <div class="form-label-group">
+                                <input type="text" id="inputStart" class="form-control" placeholder="Starting Point"
+                                    required>
+                                <label for="inputStart">Starting Point</label>
+                            </div>
+                            <div class="form-label-group">
+                                <input type="text" id="inputDest" class="form-control" placeholder="Destination"
+                                    required>
+                                <label for="inputDest">Destination</label>
+                            </div>
 
-                      <div class="form-label-group md-form md-outline">
-                        <!-- <input type="text" class="timepicker" name="time"/> -->
-                        <input type="time" id="default-picker" class="form-control" placeholder="Select time">
-                        <label for="default-picker">Time of Day</label>
-                      </div>
-                     
+                            <div class="form-label-group md-form md-outline">
+                                <!-- <input type="text" class="timepicker" name="time"/> -->
+                                <input type="time" id="default-picker" class="form-control" placeholder="Select time">
+                                <label for="default-picker">Time of Day</label>
+                            </div>
 
-                
-                  <div class="form-label-group">
-                    <input type="number" id="inputPasse" class="form-control" placeholder="How many passengers?" min="1" max="20" required autofocus>
-                    <label for="inputPasse">How many passengers?</label>
-                  </div>
-                  <div class="form-label-group">
-                    <input type="number" id="inputBags" class="form-control" placeholder="How many bags?" min="0" max="100" required autofocus>
-                    <label for="inputBags">How many bags?</label>
-                  </div>
-                 
-                  <button id="calc" class="btn btn-lg btn-dark btn-block text-uppercase" type="submit" onsubmit="calculation()">Calculate Price</button>
-                  <!-- <hr class="my-4"> -->
-                </form>
-              </div>
+
+                            <div class="form-label-group">
+                                <input type="number" id="inputPasse" class="form-control"
+                                    placeholder="How many passengers?" min="1" max="20" required autofocus>
+                                <label for="inputPasse">How many passengers?</label>
+                            </div>
+                            <div class="form-label-group">
+                                <input type="number" id="inputBags" class="form-control" placeholder="How many bags?"
+                                    min="0" max="100" required autofocus>
+                                <label for="inputBags">How many bags?</label>
+                            </div>
+
+                            <button id="calc" class="btn btn-lg btn-dark btn-block text-uppercase" type="submit"
+                                onsubmit="calculation()">Calculate Price</button>
+                            <!-- <hr class="my-4"> -->
+                        </form>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
 
     <script type="text/javascript">
-        
 
-            function calculation()
-            {
-                var queryString = $('#taxiForm').formSerialize();
-                alert(queryString);
-                console.log('test')
+        function calculation() {
+            var queryString = $('#taxiForm').formSerialize();
+            alert(queryString);
+            console.log('test')
+        }
+
+        function setValue() {
+            //pre-fill
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+
+            const startID = 'inputStart', destID = 'inputDest', passID = 'inputPasse', bagsID = 'inputBags'
+            const start = urlParams.get(startID)
+            if (start != null) {
+                var startInput = document.getElementById(startID);
+                startInput.value = start;
             }
-
-            function setValue()
-            {
-                //pre-fill
-                const queryString = window.location.search;
-                const urlParams = new URLSearchParams(queryString);
-
-                const startID = 'inputStart', destID='inputDest', passID='inputPasse', bagsID='inputBags'
-                const start = urlParams.get(startID)
-                if(start != null)
-                {
-                    var startInput = document.getElementById(startID);
-                    startInput.value = start; 
-                }
-                const dest = urlParams.get(destID)
-                if(dest != null)
-                {
-                    var destInput = document.getElementById(destID);
-                    destInput.value = dest; 
-                } 
-                const passengers = urlParams.get(passID)
-                if(passengers != null)
-                {
-                    var passInput = document.getElementById(passID);
-                    passInput.value = passengers; 
-                } 
-                const bags = urlParams.get(bagsID)
-                if(bags != null)
-                {
-                    var bagsInput = document.getElementById(bagsID);
-                    bagsInput.value = bags; 
-                }
+            const dest = urlParams.get(destID)
+            if (dest != null) {
+                var destInput = document.getElementById(destID);
+                destInput.value = dest;
+            }
+            const passengers = urlParams.get(passID)
+            if (passengers != null) {
+                var passInput = document.getElementById(passID);
+                passInput.value = passengers;
+            }
+            const bags = urlParams.get(bagsID)
+            if (bags != null) {
+                var bagsInput = document.getElementById(bagsID);
+                bagsInput.value = bags;
+            }
         }
     </script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
-
 </body>
+
 </html>

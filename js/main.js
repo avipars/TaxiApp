@@ -14,9 +14,7 @@ function myFunction() {
 }
 
 $(document).ready(function () {
-    $('.clockpicker').clockpicker();
-
     $('#calc').click(function () {
-        alert("Calc");
+        alert("Calculating");
     });
 });
