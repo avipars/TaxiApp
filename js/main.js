@@ -16,5 +16,6 @@ function myFunction() {
 $(document).ready(function () {
     $('#calc').click(function () {
         alert("Calculating");
+        myFunction(); //call the checker function
     });
 });
