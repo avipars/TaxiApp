@@ -4,6 +4,7 @@ https://avipars.github.io/TaxiApp
 
 Free taxi HTML 5 Bootstrap template (compatible on desktop and mobile)
 
+[![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/avipars)
 
 ![image](https://user-images.githubusercontent.com/5733247/118785500-94bf3c80-b899-11eb-96c0-a7129c24c84f.png)
 
